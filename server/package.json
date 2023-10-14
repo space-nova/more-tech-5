@@ -1,0 +1,22 @@
+{
+  "name": "paymentapi",
+  "version": "0.0.1",
+  "main": "cluster.js",
+  "author": "IATNAOD",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@fastify/autoload": "^5.7.1",
+    "@fastify/cors": "^8.3.0",
+    "@fastify/passport": "^2.3.0",
+    "@fastify/secure-session": "^7.0.0",
+    "dotenv": "^16.3.1",
+    "fastify": "^4.22.2",
+    "fluent-json-schema": "^4.1.1",
+    "lodash": "^4.17.21",
+    "mongoose": "^7.5.0",
+    "node-cron": "^3.0.2",
+    "passport-http-bearer": "^1.0.1",
+    "uuid4": "^2.0.3"
+  }
+}
