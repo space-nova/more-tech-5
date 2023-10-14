@@ -41,7 +41,7 @@ export default () => {
 
       <View style={styles.viewFaceGen}>
         <View 
-          style={[styles.viewIndividual, individual ? {} : {}]}
+          style={[styles.viewIndividual, individual ? {backgroundColor: '#519aff'} : {backgroundColor: '#ffffff00'}]}
           >
           <Text
             style={styles.textsFace} 
