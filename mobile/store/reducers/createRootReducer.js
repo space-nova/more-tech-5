@@ -1,8 +1,10 @@
-import { combineReducers } from 'redux';
+import {combineReducers} from 'redux';
 
-import userReducer from './user';
+import appointmentsReducer from './appointments';
+import officesReducer from './offices';
 
 export default () =>
   combineReducers({
-    user: userReducer,
+    appointments: appointmentsReducer,
+    offices: officesReducer,
   });

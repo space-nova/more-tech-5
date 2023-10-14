@@ -1,18 +1,18 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { persistReducer, persistStore } from 'redux-persist';
+import {persistReducer, persistStore} from 'redux-persist';
 import CookieManager from '@react-native-cookies/cookies';
-import { configureStore } from '@reduxjs/toolkit';
+import {configureStore} from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
-import { createLogger } from 'redux-logger';
+import {createLogger} from 'redux-logger';
 
 import rootReducer from './reducers/createRootReducer';
 import sagas from './sagas';
 
-import { COOKIE_DOMAIN, BASE_URL } from '../common/config';
+import {COOKIE_DOMAIN, BASE_URL} from '../common/config';
 
 // AsyncStorage.clear()
 
-AsyncStorage.getItem('cookie').then((cookie) => {
+AsyncStorage.getItem('cookie').then(cookie => {
   CookieManager.set(BASE_URL, {
     value: cookie.substring(cookie.indexOf('=') + 1, cookie.indexOf(';')),
     expires: new Date(new Date().setFullYear(new Date().getFullYear() + 3)),
@@ -24,7 +24,7 @@ AsyncStorage.getItem('cookie').then((cookie) => {
 });
 
 const persistConfig = {
-  key: 'template-storage',
+  key: 'more-tech-5',
   storage: AsyncStorage,
 };
 
@@ -48,7 +48,7 @@ export default (initialState = {}) => {
         collapsed: true,
         duration: true,
         colors: {
-          title: (action) => loggerActionColors[action.type.split('.')[1]],
+          title: action => loggerActionColors[action.type.split('.')[1]],
         },
       }),
     ],
@@ -59,5 +59,5 @@ export default (initialState = {}) => {
 
   sagaMiddleware.run(sagas);
 
-  return { store, persistor };
+  return {store, persistor};
 };
