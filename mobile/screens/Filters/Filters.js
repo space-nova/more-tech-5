@@ -35,17 +35,17 @@ export default () => {
     },
     {
       id: 2,
-      title: 'Пешком',
-      select: false
-    },
-    {
-      id: 3,
       title: 'Автобус',
       select: false
     },
     {
-      id: 4,
+      id: 3,
       title: 'Самокат',
+      select: false
+    },
+    {
+      id: 4,
+      title: 'Пешком',
       select: false
     },
   ]);
@@ -69,49 +69,62 @@ export default () => {
   }
 
   return (
-    <View style={styles.general}>
+    <View>
       <Text style={styles.welcomeText}>
         Фильтры
       </Text>
-      <Text style={styles.textLocation}>
-        По расположению:
-      </Text>
-      {location.map(l =>
-        <TouchableOpacity
-          key={l.id}
-          style={[styles.btnAddToParam, l.select ? { backgroundColor: '#006CFF' } : { backgroundColor: '#ffffff00' }]}
-          onPress={() => toogleLocation(l.id)}
-        >
-          <Text style={[styles.textBtnParam, l.select ? { color: 'white' } : { color: '#006CFF' }]}>
-            {l.title}
-          </Text>
-        </TouchableOpacity>
-      )}
+      <View style={styles.oneBlock}>
+        <Text style={styles.textLocation}>Расположение:</Text>
+        <View style={styles.locationBlock}>
+          {location.map(l =>
+            <TouchableOpacity
+              key={l.id}
+              style={[styles.btnAddToParam, l.select ? { backgroundColor: '#006CFF' } : { backgroundColor: '#ffffff00' }]}
+              onPress={() => toogleLocation(l.id)}
+            >
+              <Text style={[styles.textBtnParam, l.select ? { color: 'white' } : { color: '#006CFF' }]}>
+                {l.title}
+              </Text>
+            </TouchableOpacity>
+          )}
+        </View>
+      </View>
 
+      <View style={styles.oneBlock}>
+        <Text style={styles.textLocation}>Как добраться:</Text>
+        <View style={styles.locationBlock}>
 
-      <Text style={styles.textLocation}>
-        Как добраться:
-      </Text>
+          {travel.map(l =>
+            <TouchableOpacity
+              key={l.id}
+              style={[styles.btnAddToParam, l.select ? { backgroundColor: '#006CFF' } : { backgroundColor: '#ffffff00' }]}
+              onPress={() => toogleTravel(l.id)}
+            >
+              <Text style={[styles.textBtnParam, l.select ? { color: 'white' } : { color: '#006CFF' }]}>
+                {l.title}
+              </Text>
+            </TouchableOpacity>
+          )}
+        </View>
+      </View>
 
-      {travel.map(l =>
-        <TouchableOpacity
-          key={l.id}
-          style={[styles.btnAddToParam, l.select ? { backgroundColor: '#006CFF' } : { backgroundColor: '#ffffff00' }]}
-          onPress={() => toogleTravel(l.id)}
-        >
-          <Text style={[styles.textBtnParam, l.select ? { color: 'white' } : { color: '#006CFF' }]}>
-            {l.title}
-          </Text>
-        </TouchableOpacity>
-      )}
-        <TouchableOpacity
-          style={styles.applybBtn}
-          onPress={() => alert('Фильтры применились')}
-        >
-          <Text style={styles.textApply}>
-            Применить
-          </Text>
-        </TouchableOpacity>
+      {/* <View style={styles.oneBlock}>
+        <Text style={styles.textService}>Услуги:</Text>
+        <View style={styles.locationBlock}>
+
+          {travel.map(l =>
+            <TouchableOpacity
+              key={l.id}
+              style={[styles.btnAddToParam, l.select ? { backgroundColor: '#006CFF' } : { backgroundColor: '#ffffff00' }]}
+              onPress={() => toogleTravel(l.id)}
+            >
+              <Text style={[styles.textBtnParam, l.select ? { color: 'white' } : { color: '#006CFF' }]}>
+                {l.title}
+              </Text>
+            </TouchableOpacity>
+          )}
+        </View>
+      </View> */}
     </View>
   )
 }
@@ -125,15 +138,25 @@ const styles = StyleSheet.create({
     marginLeft: 20
   },
 
-  general: {
-    flex: 1,
+  oneBlock: {
   },
 
-  oneBlock: {
-    flex: 1,
+  textLocation: {
+    marginLeft: '5%',
+    fontSize: 17,
+    marginTop: 20
+  },
+
+  locationBlock: {
+    width: '90%',
+    marginLeft: '5%',
+    display: 'flex',
     flexDirection: 'row',
+    height: 40,
+    marginTop: 10,
+    justifyContent: 'space-between',
     alignItems: 'center',
-    justifyContent: 'center'
+    flexWrap: 'wrap',
   },
 
   btnAddToParam: {
@@ -141,51 +164,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     height: 40,
-    width: '90%',
-    marginLeft: '5%',
-    marginTop: 20,
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: '#006CFF'
-  },
-
-  textBtnParam: {
-    color: '#006CFF',
-    fontSize: 15,
-    textAlign: 'center'
-  },
-
-  textLocation: {
-    fontSize: 17,
-    marginLeft: "5%",
-    marginTop: 20
-  },
-
-  inpSelect: {
-    borderWidth: 1,
-    borderColor: 'red',
-    height: 20,
-    marginTop: 20
-  },
-
-  applybBtn: {
-    backgroundColor: '#006CFF',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: 40,
-    width: '90%',
-    marginLeft: '5%',
-    marginTop: 180,
-    borderRadius: 8,
+    width: '32%',
+    borderRadius: 40,
     borderWidth: 1,
     borderColor: '#006CFF',
-
+    marginTop: 10,
   },
 
-  textApply: {
-    color: 'white',
-    fontSize: 15,
-    textAlign: 'center',
-    cursor: 'pointer'
+  textService: {
+    marginLeft: '5%',
+    fontSize: 17,
+    marginTop: 70
   }
 })

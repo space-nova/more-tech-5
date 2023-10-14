@@ -4,22 +4,7 @@ export default () => {
   return (
     <View>
       <Text style={styles.searchText}>Поиск:</Text>
-      <TextInput
-        style={styles.inputCity}
-        placeholder='Название города*'
-      />
-      <TextInput
-        style={styles.inputCity}
-        placeholder='Район*'
-      />
-      <TextInput
-        style={styles.inputCity}
-        placeholder='Номер отделения(Если есть)'
-      />
-      <TextInput
-        style={styles.inputCity}
-        placeholder='Квартал(Если есть)'
-      />
+      
 
       <TouchableOpacity
         style={styles.applybBtn}
@@ -37,7 +22,7 @@ export default () => {
 const styles = StyleSheet.create({
   inputCity: {
     borderWidth: 1,
-    borderColor: 'black',
+    borderColor: '#006CFF',
     height: 35,
     marginTop: 20,
     width: '90%',
