@@ -491,12 +491,18 @@ PODS:
     - React-perflogger (= 0.72.6)
   - RNCAsyncStorage (1.19.3):
     - React-Core
+  - RNCMaskedView (0.3.0):
+    - React-Core
   - RNGestureHandler (2.13.2):
     - React-Core
   - RNScreens (3.25.0):
     - React-Core
     - React-RCTImage
+  - RNYamap (4.1.18):
+    - React
+    - YandexMapsMobile (= 4.2.2-full)
   - SocketRocket (0.6.1)
+  - YandexMapsMobile (4.2.2-full)
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
     - Yoga (~> 1.14)
@@ -567,8 +573,10 @@ DEPENDENCIES:
   - React-utils (from `../node_modules/react-native/ReactCommon/react/utils`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
+  - "RNCMaskedView (from `../node_modules/@react-native-masked-view/masked-view`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNScreens (from `../node_modules/react-native-screens`)
+  - RNYamap (from `../node_modules/react-native-yamap`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -586,6 +594,7 @@ SPEC REPOS:
     - libevent
     - OpenSSL-Universal
     - SocketRocket
+    - YandexMapsMobile
     - YogaKit
 
 EXTERNAL SOURCES:
@@ -672,10 +681,14 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon"
   RNCAsyncStorage:
     :path: "../node_modules/@react-native-async-storage/async-storage"
+  RNCMaskedView:
+    :path: "../node_modules/@react-native-masked-view/masked-view"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
   RNScreens:
     :path: "../node_modules/react-native-screens"
+  RNYamap:
+    :path: "../node_modules/react-native-yamap"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -733,12 +746,15 @@ SPEC CHECKSUMS:
   React-utils: fa59c9a3375fb6f4aeb66714fd3f7f76b43a9f16
   ReactCommon: dd03c17275c200496f346af93a7b94c53f3093a4
   RNCAsyncStorage: c913ede1fa163a71cea118ed4670bbaaa4b511bb
+  RNCMaskedView: f7c74478c83c4fdfc5cf4df51f80c0dd5cf125c6
   RNGestureHandler: bb86e378287f7713baf3ca205423eb8109790022
   RNScreens: 85d3880b52d34db7b8eeebe2f1a0e807c05e69fa
+  RNYamap: 3466eba02ad952b7521d77672fc758cf612bb6b8
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
+  YandexMapsMobile: 1fd5f86bc368ad6ba528b199f9477e4a26796567
   Yoga: b76f1acfda8212aa16b7e26bcce3983230c82603
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
 PODFILE CHECKSUM: bd1de8000740624beecc88636f7c92c679382e67
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.12.1
