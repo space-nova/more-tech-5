@@ -18,6 +18,7 @@ import Search from '../../screens/Search/Search';
 import { clearUserError } from '../../store/actions/user';
 import Focused from '../Focused/Focused';
 import Filters from '../../screens/Filters/Filters';
+import Branches from '../../screens/Branches/Branches';
 
 const Stack = createStackNavigator();
 
@@ -72,7 +73,7 @@ export default connect(
             }}
           />
           <Tab.Screen
-            name="Search"
+            name="search"
             component={Search}
             options={{
               initialRouteName: false,
@@ -90,8 +91,26 @@ export default connect(
           />
 
           <Tab.Screen
-            name="Filters"
+            name="filters"
             component={Filters}
+            options={{
+              initialRouteName: false,
+              headerShown: false,
+              tabBarIcon: ({ focused }) => {
+                return (
+                  <Focused
+                    focused={focused}
+                    blueImage={filtersBlue}
+                    greyImage={filtersGrey}
+                  />
+                );
+              },
+            }}
+          />
+
+          <Stack.Screen
+            name="branches"
+            component={Branches}
             options={{
               initialRouteName: false,
               headerShown: false,

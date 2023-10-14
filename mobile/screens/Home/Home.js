@@ -1,19 +1,29 @@
 import { View, Text } from 'react-native';
-import {YaMap} from 'react-native-yamap';
+import { YaMap, Marker } from 'react-native-yamap';
+import React from 'react';
+import Branches from '../Branches/Branches';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-export default () => {
+export default ({ navigation }) => {
+
   return (
-
-      <YaMap
-        initialRegion={{
+    <YaMap
+      initialRegion={{
+        lat: 57.6299,
+        lon: 39.8737,
+        zoom: 11,
+      }}
+      style={{ flex: 1 }}
+    >
+      <Marker
+        point={{
           lat: 57.6299,
-          lon: 39.8737,
-          zoom: 11,
-
+          lon: 39.8737
         }}
-        style={{ flex: 1 }}
-      >
-        
-      </YaMap>
+        scale={3}
+        onPress={() => navigation.navigate('branches')}
+      />
+    </YaMap>
   )
 }

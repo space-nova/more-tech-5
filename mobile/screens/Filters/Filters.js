@@ -107,24 +107,6 @@ export default () => {
           )}
         </View>
       </View>
-
-      {/* <View style={styles.oneBlock}>
-        <Text style={styles.textService}>Услуги:</Text>
-        <View style={styles.locationBlock}>
-
-          {travel.map(l =>
-            <TouchableOpacity
-              key={l.id}
-              style={[styles.btnAddToParam, l.select ? { backgroundColor: '#006CFF' } : { backgroundColor: '#ffffff00' }]}
-              onPress={() => toogleTravel(l.id)}
-            >
-              <Text style={[styles.textBtnParam, l.select ? { color: 'white' } : { color: '#006CFF' }]}>
-                {l.title}
-              </Text>
-            </TouchableOpacity>
-          )}
-        </View>
-      </View> */}
     </View>
   )
 }
