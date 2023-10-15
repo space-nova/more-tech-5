@@ -1,0 +1,214 @@
+{
+	"info": {
+		"_postman_id": "0d8623b0-7104-469f-9e50-752b24f1265c",
+		"name": "Offices",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9180668"
+	},
+	"item": [
+		{
+			"name": "Get offices on map",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{APIURL}}offices/map?regionStartLongitude=36&regionStartLatitude=56&regionEndLongitude=37&regionEndLatitude=57",
+					"host": [
+						"{{APIURL}}offices"
+					],
+					"path": [
+						"map"
+					],
+					"query": [
+						{
+							"key": "regionStartLongitude",
+							"value": "36"
+						},
+						{
+							"key": "regionStartLatitude",
+							"value": "56"
+						},
+						{
+							"key": "regionEndLongitude",
+							"value": "37"
+						},
+						{
+							"key": "regionEndLatitude",
+							"value": "57"
+						},
+						{
+							"key": "near",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "nearSubway",
+							"value": null,
+							"disabled": true
+						},
+						{
+							"key": "nearCafe",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get offices by search",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{APIURL}}offices/search?service&longitude&latitude&receptionTime",
+					"host": [
+						"{{APIURL}}offices"
+					],
+					"path": [
+						"search"
+					],
+					"query": [
+						{
+							"key": "service",
+							"value": null
+						},
+						{
+							"key": "longitude",
+							"value": null
+						},
+						{
+							"key": "latitude",
+							"value": null
+						},
+						{
+							"key": "receptionTime",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get office",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{APIURL}}offices?id=652a6922105caa0eccdd8797",
+					"host": [
+						"{{APIURL}}offices"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "652a6922105caa0eccdd8797"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create office",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"salePointName\": \"name\",\r\n    \"address\": \"address\",\r\n    \"metroStation\": \"metroStation\",\r\n    \"openHours\": {\r\n        \"legal\": [\r\n            {\r\n                \"days\": \"ПН\",\r\n                \"hours\": \"10-18\"\r\n            }\r\n        ],\r\n        \"individuals\": [\r\n            {\r\n                \"days\": \"ПН\",\r\n                \"hours\": \"10-18\"\r\n            }\r\n        ]\r\n    },\r\n    \"services\": {\r\n        \"legal\": [],\r\n        \"individuals\": []\r\n    },\r\n    \"kep\": false,\r\n    \"rko\": false,\r\n    \"suo\": false,\r\n    \"privilege\": false,\r\n    \"immobile\": false,\r\n    \"cafe\": false,\r\n    \"latitude\": 57,\r\n    \"longitude\": 56\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{APIURL}}offices",
+					"host": [
+						"{{APIURL}}offices"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update office",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"652a6922105caa0eccdd8797\",\r\n    // \"salePointName\": \"name\",\r\n    // \"address\": \"address\",\r\n    // \"metroStation\": \"metroStation\",\r\n    // \"openHours\": {\r\n    //     \"legal\": [\r\n    //         {\r\n    //             \"days\": \"ПН\",\r\n    //             \"hours\": \"10-18\"\r\n    //         }\r\n    //     ],\r\n    //     \"individuals\": [\r\n    //         {\r\n    //             \"days\": \"ПН\",\r\n    //             \"hours\": \"10-18\"\r\n    //         }\r\n    //     ]\r\n    // },\r\n    \"services\": {\r\n        \"legal\": [\"652b6593f3cb515f28411c2d\",\"652b65a2f3cb515f28411c30\",\"652b65acf3cb515f28411c33\",\"652b65b4f3cb515f28411c36\",\"652b7af3a31eb3f6e42b37fd\"],\r\n        \"individuals\": [\"652b6593f3cb515f28411c2d\",\"652b65a2f3cb515f28411c30\",\"652b65acf3cb515f28411c33\",\"652b65b4f3cb515f28411c36\",\"652b7af3a31eb3f6e42b37fd\"]\r\n    }\r\n    // \"kep\": false,\r\n    // \"rko\": false,\r\n    // \"suo\": false,\r\n    // \"privilege\": false,\r\n    // \"immobile\": false,\r\n    // \"cafe\": false,\r\n    // \"latitude\": 57,\r\n    // \"longitude\": 56\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{APIURL}}offices",
+					"host": [
+						"{{APIURL}}offices"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete office",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"652a80c26a90bd4fa696feef\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{APIURL}}offices",
+					"host": [
+						"{{APIURL}}offices"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "test-bearer",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

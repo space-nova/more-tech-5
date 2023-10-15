@@ -1,3 +1,4 @@
+const { default: mongoose } = require('mongoose');
 const Offices = require('../../../models/Offices');
 
 Offices.collection.createIndex({ location: '2dsphere' }).then((res) => {
@@ -7,18 +8,18 @@ Offices.collection.createIndex({ location: '2dsphere' }).then((res) => {
 const getOfficesBySearch = ({ service, longitude, latitude, receptionTime }) =>
   Offices.aggregate([
     {
-      $match: {
-        $or: [{ 'services.legal': service }, { 'services.individuals': service }],
-      },
-    },
-    {
       $geoNear: {
         near: { type: 'Point', coordinates: [longitude, latitude] },
         distanceField: 'distance',
       },
     },
     {
-      $sort: { distance: 1, [`workload.${receptionTime.getHours()}`]: 1 },
+      $match: {
+        $or: [{ 'services.legal': new mongoose.Types.ObjectId(service) }, { 'services.individuals': new mongoose.Types.ObjectId(service) }],
+      },
+    },
+    {
+      $sort: { distance: 1, ...(receptionTime ? { [`workload.${receptionTime.getHours()}`]: 1 } : {}) },
     },
     {
       $limit: 50,
@@ -38,42 +39,59 @@ const getOfficesBySearch = ({ service, longitude, latitude, receptionTime }) =>
   ]);
 
 const getOfficesOnMap = ({
-  regionEndLatitude,
-  regionStartLatitude,
-  regionStartLongitude,
-  regionEndLongitude,
+  topLeftLongitude,
+  topLeftLatitude,
+  topRightLongitude,
+  topRightLatitude,
+  bottomLeftLongitude,
+  bottomLeftLatitude,
+  bottomRightLongitude,
+  bottomRightLatitude,
+  userLongitude,
+  userLatitude,
   near,
   nearSubway,
   nearCafe,
 }) =>
   Offices.aggregate([
+    ...(near
+      ? [
+        {
+          $geoNear: {
+            near: { type: "Point", coordinates: [userLongitude, userLatitude] },
+            distanceField: 'distance',
+            spherical: true,
+            maxDistance: 5000
+          },
+        },
+      ]
+      : []),
     {
       $match: {
-        latitude: { $gte: regionStartLatitude, $lte: regionEndLatitude },
-        longitude: { $gte: regionStartLongitude, $lte: regionEndLongitude },
+        latitude: {
+          $gte: Math.min(topLeftLatitude, topRightLatitude, bottomLeftLatitude, bottomRightLatitude),
+          $lte: Math.max(topLeftLatitude, topRightLatitude, bottomLeftLatitude, bottomRightLatitude)
+        },
+        longitude: {
+          $gte: Math.min(topLeftLongitude, topRightLongitude, bottomLeftLongitude, bottomRightLongitude),
+          $lte: Math.max(topLeftLongitude, topRightLongitude, bottomLeftLongitude, bottomRightLongitude)
+        },
         metroStation: { $ne: nearSubway ? '' : null },
         cafe: nearCafe ? true : { $ne: null },
       },
     },
-    ...(near
-      ? [
-          {
-            $let: { location: ['$longitude', '$latitude'] },
-          },
-          {
-            $geoNear: { near: '$$location', maxDistance: 5000 },
-          },
-        ]
-      : []),
     {
       $project: {
         _id: 1,
         latitude: 1,
         longitude: 1,
+        distance: 1,
         createdAt: 1,
       },
     },
-  ]);
+  ]).catch((err) => {
+    console.log(err)
+  });
 
 const getOffice = (find, fileds) => Offices.findOne(find, fileds);
 

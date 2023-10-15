@@ -1,19 +1,19 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {persistReducer, persistStore} from 'redux-persist';
+import { persistReducer, persistStore } from 'redux-persist';
 import CookieManager from '@react-native-cookies/cookies';
-import {configureStore} from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
-import {createLogger} from 'redux-logger';
+import { createLogger } from 'redux-logger';
 
 import rootReducer from './reducers/createRootReducer';
 import sagas from './sagas';
 
-import {COOKIE_DOMAIN, BASE_URL} from '../common/config';
+import { COOKIE_DOMAIN, BASE_URL } from '../common/config';
 
 // AsyncStorage.clear()
 
 AsyncStorage.getItem('cookie').then(cookie => {
-  CookieManager.set(BASE_URL, {
+  if (cookie) CookieManager.set(BASE_URL, {
     value: cookie.substring(cookie.indexOf('=') + 1, cookie.indexOf(';')),
     expires: new Date(new Date().setFullYear(new Date().getFullYear() + 3)),
     domain: COOKIE_DOMAIN,
@@ -52,12 +52,12 @@ export default (initialState = {}) => {
         },
       }),
     ],
-    devTools: process.env.NODE_ENV !== 'production',
+    devTools: true,
   });
 
   const persistor = persistStore(store);
 
   sagaMiddleware.run(sagas);
 
-  return {store, persistor};
+  return { store, persistor };
 };

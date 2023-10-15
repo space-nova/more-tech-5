@@ -5,6 +5,9 @@
   "author": "IATNAOD",
   "license": "MIT",
   "private": true,
+  "scripts": {
+    "start": "node cluster.js"
+  },
   "dependencies": {
     "@fastify/autoload": "^5.7.1",
     "@fastify/cors": "^8.3.0",
@@ -20,3 +23,4 @@
     "uuid4": "^2.0.3"
   }
 }
+

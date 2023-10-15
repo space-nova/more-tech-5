@@ -18,6 +18,10 @@ module.exports = {
     .prop('privilege', FJS.boolean().default(false))
     .prop('immobile', FJS.boolean().default(false))
     .prop('cafe', FJS.boolean().default(false))
+    .prop('location', FJS.object()
+      .prop('type', FJS.string().default('Point'))
+      .prop('coordinates', FJS.array().minItems(2).maxItems(2))
+      .required())
     .prop('latitude', FJS.number().required())
     .prop('longitude', FJS.number().required()),
   headers: FJS.object().prop('Authorization', FJS.string().required()),

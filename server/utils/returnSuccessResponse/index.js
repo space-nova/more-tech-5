@@ -1,1 +1,1 @@
-module.exports = (result) => ({ success: false, result });
+module.exports = (result) => ({ success: true, result });

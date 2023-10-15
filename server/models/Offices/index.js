@@ -78,6 +78,16 @@ module.exports = model(
       default: false,
     },
 
+    location: {
+      type: {
+        type: String,
+        default: 'Point'
+      },
+      coordinates: {
+        type: [Number],
+        default: []
+      }
+    },
     latitude: {
       type: Number,
       required: true,

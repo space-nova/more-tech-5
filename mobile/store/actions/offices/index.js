@@ -1,4 +1,4 @@
-import {createActionFactory} from '../../../utils/store/helpers';
+import { createActionFactory } from '../../../utils/store/helpers';
 
 const factory = createActionFactory('OFFICES');
 
@@ -14,6 +14,11 @@ export const getOfficesBySearchActionAsync = factory.createAsync(
 
 export const getOfficeAction = factory.create('GET_OFFICE');
 export const getOfficeActionAsync = factory.createAsync('GET_OFFICE_ASYNC');
+
+export const changeOfficesFilter = factory.create('CHANGE_OFFICES_FILTER');
+export const changeOfficesFilterAsync = factory.createAsync(
+  'CHANGE_OFFICES_FILTER_ASYNC',
+);
 
 export const changeOfficesField = factory.create('CHANGE_OFFICES_FIELD');
 export const changeOfficesFieldAsync = factory.createAsync(

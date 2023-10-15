@@ -57,7 +57,7 @@ module.exports = async (app) => {
   app.get('/', { schema: getOfficeSchema }, async (req, reply) => {
     const { id } = req.query;
 
-    return getOffice({ _id: id })
+    return getOffice({ _id: id }).populate('services.legal', 'name special').populate('services.individuals', 'name special')
       .then(async (office) => {
         return reply.send(returnSuccessResponse(office));
       })

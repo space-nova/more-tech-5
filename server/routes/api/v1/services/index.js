@@ -9,11 +9,10 @@ const {
   createServiceSchema,
   updateServiceSchema,
   deleteServiceSchema,
-  getServicesSchema,
 } = require('../../../../validators/api/v1/services');
 
 module.exports = async (app) => {
-  app.get('/', { schema: getServicesSchema }, async (req, reply) => {
+  app.get('/', async (req, reply) => {
     return getServices()
       .then((services) => {
         return reply.send(returnSuccessResponse(services));

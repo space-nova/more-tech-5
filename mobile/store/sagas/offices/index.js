@@ -1,5 +1,5 @@
-import {takeEvery} from 'redux-saga/effects';
-import {bindAsyncActions} from '../../../utils/store/helpers';
+import { takeEvery } from 'redux-saga/effects';
+import { bindAsyncActions } from '../../../utils/store/helpers';
 import {
   getOfficesOnMapAction,
   getOfficesOnMapActionAsync,
@@ -7,6 +7,8 @@ import {
   getOfficesBySearchActionAsync,
   getOfficeAction,
   getOfficeActionAsync,
+  changeOfficesFilter,
+  changeOfficesFilterAsync,
   changeOfficesField,
   changeOfficesFieldAsync,
   clearOfficesError,
@@ -19,8 +21,8 @@ function plugeWorker() {
   return true;
 }
 
-function changeOfficesWorker({name, value}) {
-  return {name, value};
+function changeOfficesFieldWorker({ name, value }) {
+  return { name, value };
 }
 
 export function* officesSaga() {
@@ -41,8 +43,12 @@ export function* officesSaga() {
     bindAsyncActions(getOfficeActionAsync)(OfficesApi.getOfficeEndpoint),
   );
   yield takeEvery(
+    changeOfficesFilter,
+    bindAsyncActions(changeOfficesFilterAsync)(changeOfficesFieldWorker),
+  );
+  yield takeEvery(
     changeOfficesField,
-    bindAsyncActions(changeOfficesFieldAsync)(changeOfficesWorker),
+    bindAsyncActions(changeOfficesFieldAsync)(changeOfficesFieldWorker),
   );
   yield takeEvery(
     clearOfficesError,
